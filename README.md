@@ -57,10 +57,6 @@
 
 通过执行 `yarn start` 或 `yarn build`，`src/images` 和 `src/icons` 目录会自动复制到 `dist/wechat/images` 和 `dist/wechat/icons` 目录（支付宝、百度小程序同理）。
 
-## 更新日志
-
-[Changelog](/CHANGELOG.md)
-
 ## 相关项目
 
 * [create-wxapp-page](https://github.com/cantonjs/create-wxapp-page)
