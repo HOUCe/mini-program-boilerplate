@@ -1,5 +1,9 @@
 @import 'share';
 
+.container {
+	height: 100vh;
+}
+
 .motto {
 	@extend %center-flex;
 

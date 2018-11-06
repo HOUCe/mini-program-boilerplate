@@ -33,9 +33,11 @@ export default (env = {}) => {
 	const relativeFileLoader = (ext = '[ext]') => {
 		const namePrefix = isWechat ? '' : '[path]'
 		return {
+			// file-loader https://www.npmjs.com/package/file-loader
 			loader: 'file-loader',
 			options: {
 				useRelativePath: isWechat,
+				// 依赖 file-loader 对文件名后缀进行转换
 				name: `${namePrefix}[name].${ext}`,
 				context: srcDir,
 			},
@@ -94,9 +96,12 @@ export default (env = {}) => {
 					use: [
 						relativeFileLoader(isWechat ? 'wxml' : (isAlipay ? 'axml' : 'swan')),
 						{
+							// 对目标文件内部诸如 wx:if 等进行转换（为 swan: 或 a: 等）
 							loader: 'wxml-loader',
 							options: {
+								// root path for requiring sources
 								root: srcDir,
+								// should be true if you wish to generate a root relative URL for each file
 								enforceRelativePath: true,
 							},
 						},

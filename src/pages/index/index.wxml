@@ -12,4 +12,7 @@
   <view class="powered">
     <text>{{powered.by}}</text>
   </view>
+  <view class="powered" wx:if="{{true}}">
+    <text>test if for xml</text>
+  </view>
 </view>
