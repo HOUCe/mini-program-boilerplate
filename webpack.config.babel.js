@@ -1,36 +1,37 @@
-import { resolve } from 'path';
+import { resolve } from 'path'
 import {
 	DefinePlugin,
 	EnvironmentPlugin,
 	IgnorePlugin,
 	optimize,
-} from 'webpack';
-import WXAppWebpackPlugin, { Targets } from 'wxapp-webpack-plugin';
-import StylelintPlugin from 'stylelint-webpack-plugin';
-import MinifyPlugin from 'babel-minify-webpack-plugin';
-import CopyPlugin from 'copy-webpack-plugin';
-import pkg from './package.json';
+} from 'webpack'
+import WXAppWebpackPlugin, { Targets } from 'wxapp-webpack-plugin'
+import StylelintPlugin from 'stylelint-webpack-plugin'
+import MinifyPlugin from 'babel-minify-webpack-plugin'
+import CopyPlugin from 'copy-webpack-plugin'
+import pkg from './package.json'
 
-const { NODE_ENV, LINT } = process.env;
-const isDev = NODE_ENV !== 'production';
-const shouldLint = !!LINT && LINT !== 'false';
-const srcDir = resolve('src');
+const { NODE_ENV, LINT } = process.env
+const isDev = NODE_ENV !== 'production'
+const shouldLint = !!LINT && LINT !== 'false'
+const srcDir = resolve('src')
 
 const copyPatterns = []
 	.concat(pkg.copyWebpack || [])
 	.map(
 		(pattern) =>
 			typeof pattern === 'string' ? { from: pattern, to: pattern } : pattern,
-	);
+	)
 
 export default (env = {}) => {
-	const min = env.min;
-	const target = env.target || 'Wechat';
-	const isWechat = env.target !== 'Alipay';
-	const isAlipay = !isWechat;
+	const min = env.min
+	const target = env.target || 'Wechat'
+	const isWechat = env.target === 'Wechat'
+	const isAlipay = env.target === 'Alipay'
+	const isBaidu = env.target === 'Baidu'
 
 	const relativeFileLoader = (ext = '[ext]') => {
-		const namePrefix = isWechat ? '' : '[path]';
+		const namePrefix = isWechat ? '' : '[path]'
 		return {
 			loader: 'file-loader',
 			options: {
@@ -38,8 +39,8 @@ export default (env = {}) => {
 				name: `${namePrefix}[name].${ext}`,
 				context: srcDir,
 			},
-		};
-	};
+		}
+	}
 
 	return {
 		entry: {
@@ -48,7 +49,7 @@ export default (env = {}) => {
 		output: {
 			filename: '[name].js',
 			publicPath: '/',
-			path: resolve('dist', isWechat ? 'wechat' : 'alipay'),
+			path: resolve('dist', isWechat ? 'wechat' : (isAlipay ? 'alipay' : 'baidu')),
 		},
 		target: Targets[target],
 		module: {
@@ -73,7 +74,7 @@ export default (env = {}) => {
 					test: /\.(scss|wxss|acss)$/,
 					include: /src/,
 					use: [
-						relativeFileLoader(isWechat ? 'wxss' : 'acss'),
+						relativeFileLoader(isWechat ? 'wxss' : (isAlipay ? 'acss' : 'css')),
 						{
 							loader: 'sass-loader',
 							options: {
@@ -88,10 +89,10 @@ export default (env = {}) => {
 					use: relativeFileLoader(),
 				},
 				{
-					test: /\.(wxml|axml)$/,
+					test: /\.(wxml|axml|swan|xml)$/,
 					include: /src/,
 					use: [
-						relativeFileLoader(isWechat ? 'wxml' : 'axml'),
+						relativeFileLoader(isWechat ? 'wxml' : (isAlipay ? 'axml' : 'swan')),
 						{
 							loader: 'wxml-loader',
 							options: {
@@ -111,8 +112,9 @@ export default (env = {}) => {
 				__DEV__: isDev,
 				__WECHAT__: isWechat,
 				__ALIPAY__: isAlipay,
-				wx: isWechat ? 'wx' : 'my',
-				my: isWechat ? 'wx' : 'my',
+				__Baidu__: isBaidu,
+				wx: isWechat ? 'wx' : (isAlipay ? 'my' : 'swan'),
+				my: isWechat ? 'wx' : (isAlipay ? 'my' : 'swan'),
 			}),
 			new WXAppWebpackPlugin({
 				clear: !isDev,

@@ -9,6 +9,6 @@ Page({
 			logs: (wx.getStorageSync('logs') || []).map(function (log) {
 				return formatTime(new Date(log));
 			}),
-		});
+		})
 	},
-});
+})

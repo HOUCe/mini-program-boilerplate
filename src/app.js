@@ -22,9 +22,9 @@ App({
 							this.globalData.userInfo = res.userInfo;
 							typeof cb === 'function' && cb(this.globalData.userInfo);
 						},
-					});
+					})
 				},
-			});
+			})
 		}
 	},
 	globalData: {

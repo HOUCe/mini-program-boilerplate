@@ -1,2 +1,2 @@
-const name = 'webpack';
+const name = 'LucasHC';
 module.exports.by = `Powered by ${name}`;

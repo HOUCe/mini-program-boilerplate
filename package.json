@@ -1,19 +1,22 @@
 {
-	"name": "wxapp-boilerplate",
+	"name": "mini-program-boilerplate",
 	"version": "0.0.0",
-	"description": "mini program dev boilerplate, supports wechat and alipay",
+	"description": "mini program dev boilerplate, supports wechat, alipay and baidu smart",
 	"private": true,
 	"scripts": {
-		"start": "webpack --watch",
+		"start": "webpack --watch --env.target=Wechat",
 		"start:alipay": "webpack --watch --env.target=Alipay",
+		"start:baidu": "webpack --watch --env.target=Baidu",
 		"webpack": "webpack",
 		"deprecate:watch": "echo \"'watch' is deprecated, please use 'start' instead\"",
 		"watch": "run-s deprecate:watch start",
 		"watch:alipay": "run-s deprecate:watch start:alipay",
+		"watch:baidu": "run-s deprecate:watch start:baidu",
 		"prestart": "rimraf dist",
 		"prebuild": "rimraf dist",
 		"build:wechat": "cross-env NODE_ENV=production webpack --env.target=Wechat --env.min",
 		"build:alipay": "cross-env NODE_ENV=production webpack --env.target=Alipay --env.min",
+		"build:baidu": "cross-env NODE_ENV=production webpack --env.target=Baidu --env.min",
 		"build": "run-s build:*",
 		"lint:watch": "cross-env LINT=true run-s start",
 		"lint:build": "cross-env LINT=true run-s build",
@@ -23,7 +26,7 @@
 		"test": "jest"
 	},
 	"main": "dist/wechat/app.js",
-	"author": "cap32",
+	"author": "houce",
 	"license": "MIT",
 	"engines": {
 		"node": ">=4"
