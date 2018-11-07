@@ -5,7 +5,7 @@ import {
 	IgnorePlugin,
 	optimize,
 } from 'webpack'
-import WXAppWebpackPlugin, { Targets } from 'wxapp-webpack-plugin'
+import MiniProgramWebpackPlugin, { Targets } from '@lucashc/mini-program-webpack-plugin'
 import StylelintPlugin from 'stylelint-webpack-plugin'
 import MinifyPlugin from 'babel-minify-webpack-plugin'
 import CopyPlugin from 'copy-webpack-plugin'
@@ -97,7 +97,7 @@ export default (env = {}) => {
 						relativeFileLoader(isWechat ? 'wxml' : (isAlipay ? 'axml' : 'swan')),
 						{
 							// 对目标文件内部诸如 wx:if 等进行转换（为 swan: 或 a: 等）
-							loader: 'wxml-loader',
+							loader: '@lucashc/mini-program-loader',
 							options: {
 								// root path for requiring sources
 								root: srcDir,
@@ -121,7 +121,7 @@ export default (env = {}) => {
 				wx: isWechat ? 'wx' : (isAlipay ? 'my' : 'swan'),
 				my: isWechat ? 'wx' : (isAlipay ? 'my' : 'swan'),
 			}),
-			new WXAppWebpackPlugin({
+			new MiniProgramWebpackPlugin({
 				clear: !isDev,
 			}),
 			new optimize.ModuleConcatenationPlugin(),

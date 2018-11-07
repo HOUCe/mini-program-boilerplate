@@ -1,4 +1,4 @@
-# wxapp-boilerplate
+# mini-program-boilerplate
 
 使用 `webpack`, `babel`, `scss` 开发的微信/支付宝/百度小程序项目多合一脚手架
 
@@ -12,7 +12,6 @@
 * 提供 `__DEV__` 和 `process.env.NODE_ENV` 全局常量辅助开发
 * 支持自动编译为微信、支付宝、百度小程序
 * 提供 `__WECHAT__`、`__ALIPAY__`、`__BAIDU__` 全局常量来判断是微信小程序或支付宝小程序或百度小程序
-* 通过命令行快速创建微信小程序页面
 * 支持在 `production` 环境下压缩代码
 
 ## 开始使用
@@ -32,7 +31,6 @@
 * `yarn build` 编译生成 `production` 环境的代码到 `dist/wechat`、`dist/alipay`、`dist/baidu`
 * `yarn lint:build` 执行 `yarn build` 命令，并使用 eslint 和 stylelint 来校验代码规范
 * `yarn prettier` 执行 `prettier` 来格式化 src 目录下的代码
-* `yarn create-page` 快速创建微信小程序页面（更多 `create-page` 的用法，请查看 [create-wxapp-page](https://github.com/cantonjs/create-wxapp-page)）
 
 ## 兼容微信、支付宝、百度小程序
 
@@ -59,7 +57,7 @@
 
 ## 实现原理
 
-对于不同平台的差异化编译，主要依靠实现 webpack 的自定义 loader 和 plugin。loader 是文件加载器，能够加载资源文件，并对这些文件进行一些处理，诸如编译、压缩等，最终一起打包到指定的文件中。第一个执行的 loader 接收源文件内容作为参数，其他 loader 接收前一个执行的 loader 的返回值作为参数。最后执行的 loader 会返回此模块的 JavaScript 源码。详细信息可以参见官网。同时，在 Webpack 运行的生命周期中会广播出许多事件，plugin 可以监听这些事件，在合适的时机通过 webpack 提供的 API 改变输出结果。
+对于不同平台的差异化编译，主要依靠实现 webpack 的自定义 loader 和 plugin。loader 是文件加载器，能够加载资源文件，并对这些文件进行一些处理，诸如编译、压缩等，最终一起打包到指定的文件中。第一个执行的 loader 接收源文件内容作为参数，其他 loader 接收前一个执行的 loader 的返回值作为参数。最后执行的 loader 会返回此模块的 JavaScript 源码。详细信息可以参见官网。同时，在 webpack 运行的生命周期中会广播出许多事件，plugin 可以监听这些事件，在合适的时机通过 webpack 提供的 API 改变输出结果。
 
 **plugin和loader的区别是什么？**
 
@@ -67,20 +65,7 @@
 
 plugin 是一个扩展器，它丰富了 wepack 本身，针对是 loader 结束后，webpack 打包的整个过程，它并不直接操作文件，而是基于事件机制工作，会监听 webpack 打包过程中的某些节点，执行广泛的任务。、
 
-该项目使用 wxml-loader 和 wxapp-webpack-plugin 来实现自定制的编译。
-
-- file-loader: 用于输出 .json，.wxss，.jpg 之类的文件
-- css-loader: 使 webpack 能编译或处理 .wxss 上引用的文件
-- wxml-loader: 使 webpack 能编译或处理 .wxml 上引用的文件
-
-
-
-## 相关项目
-
-* [create-wxapp-page](https://github.com/cantonjs/create-wxapp-page)
-* [react-lib-boilerplate](https://github.com/cantonjs/react-lib-boilerplate)
-* [front-end-lib-boilerplate](https://github.com/cantonjs/front-end-lib-boilerplate)
-* [node-cli-boilerplate](https://github.com/cantonjs/node-cli-boilerplate)
+该项目使用 mini-program-loader 和 mini-program-webpack-plugin 来实现自定制的编译。这两者 fork 于：[wxml-loader](https://github.com/Cap32/wxml-loader)，同时增添了对百度小程序的支持。
 
 ## License
 
