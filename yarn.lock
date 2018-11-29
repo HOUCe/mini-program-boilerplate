@@ -135,10 +135,10 @@
     loader-utils "^1.1.0"
     sax "^1.2.2"
 
-"@lucashc/mini-program-webpack-plugin@^0.0.9":
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/@lucashc/mini-program-webpack-plugin/-/mini-program-webpack-plugin-0.0.9.tgz#9c1a699916351572ac1bfec48f441e13f6b8ad64"
-  integrity sha512-sJbVEBfeSpcxV6mqEyTbKM0/eAYxKV2ORlZ4sF3vJrzXRQ6fXgaDlSb7XuZezP3MS6B0S+Kl0KKrgPej955Z4A==
+"@lucashc/mini-program-webpack-plugin@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@lucashc/mini-program-webpack-plugin/-/mini-program-webpack-plugin-0.0.11.tgz#ebd2970596d88970ca1734c53f6d95978cdb344a"
+  integrity sha512-UvqsLjyEhbZTxy6ZjIVUmzNpbv6HYSzyiUOekSg8WaKKujrfKwAcopgCRtRD2i3ZrcfIxDr7JME9z+HkVQ68PQ==
   dependencies:
     fs-extra "^7.0.1"
     globby "^8.0.1"

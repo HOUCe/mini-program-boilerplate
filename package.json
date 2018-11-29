@@ -27,7 +27,7 @@
 	},
 	"devDependencies": {
 		"@lucashc/mini-program-loader": "^0.0.2",
-		"@lucashc/mini-program-webpack-plugin": "^0.0.10",
+		"@lucashc/mini-program-webpack-plugin": "^0.0.11",
 		"babel-cli": "^6.24.0",
 		"babel-core": "^6.26.0",
 		"babel-jest": "^23.6.0",
