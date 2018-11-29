@@ -87,6 +87,7 @@ export default (env = {}) => {
 				},
 				{
 					test: /\.(json|png|jpg|gif)$/,
+					type: 'javascript/auto',
 					include: /src/,
 					use: relativeFileLoader(),
 				},
@@ -120,6 +121,7 @@ export default (env = {}) => {
 				__Baidu__: isBaidu,
 				wx: isWechat ? 'wx' : (isAlipay ? 'my' : 'swan'),
 				my: isWechat ? 'wx' : (isAlipay ? 'my' : 'swan'),
+				swan: isWechat ? 'wx' : (isAlipay ? 'my' : 'swan'),
 			}),
 			new MiniProgramWebpackPlugin({
 				clear: !isDev,

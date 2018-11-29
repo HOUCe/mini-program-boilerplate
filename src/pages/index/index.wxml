@@ -6,6 +6,9 @@
   <view bindtap="bindViewTap">
     <user avatarUrl="{{userInfo.avatarUrl}}" nickName="{{userInfo.nickName}}"></user>
   </view>
+  <view>
+    {{userInfo.avatarUrl}}
+  </view>
   <view class="motto">
     <template is="motto" data="{{motto:motto}}" />
   </view>
