@@ -24,7 +24,7 @@ Page({
 
 		const log = flow(() => {
 			console.log('is wechat mini program: ', __WECHAT__);
-			console.log('is baidu mini program: ', __ALIPAY__);
+			console.log('is ali mini program: ', __ALIPAY__);
 			console.log('is baidu mini program: ', __BAIDU__);
 			console.log('DEV: ', __DEV__);
 		})

@@ -104,6 +104,7 @@ export default (env = {}) => {
 								root: srcDir,
 								// should be true if you wish to generate a root relative URL for each file
 								enforceRelativePath: true,
+								buildTarget: target
 							},
 						},
 					],
